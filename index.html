@@ -1,397 +1,414 @@
-<!DOCTYPE html><html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>TG.Agency — Продвижение в Telegram</title> <style> @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-text
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG.PRO — Агентство Telegram-маркетинга</title>
+    <style>
+        /* --- 1. Шрифты и переменные --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
-    :root {
-        --primary: #FFDD2D;   /* Яндекс Желтый */
-        --accent: #21201F;    /* Черный */
-        --tg-blue: #2AABEE;   /* Телеграм синий */
-        --bg: #F0F2F5;        /* Светлый фон */
-        --white: #FFFFFF;
-        --radius: 28px;       /* Крупное скругление "как у Яндекса" */
-        --radius-sm: 16px;
-    }
+        :root {
+            --primary: #FFDD2D;    /* Яндекс Желтый */
+            --accent: #21201F;     /* Черный */
+            --tg-blue: #2AABEE;    /* Телеграм синий */
+            --bg: #F0F2F5;         /* Фон */
+            --white: #FFFFFF;
+            --radius: 28px;        /* Крупное скругление */
+            --radius-sm: 16px;
+            --shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
 
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--bg);
-        color: var(--accent);
-        margin: 0;
-        padding: 0;
-        line-height: 1.4;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; padding: 0; margin: 0; }
-    * { box-sizing: border-box; }
-
-    /* Container */
-    .container {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 0 24px;
-    }
-
-    /* Header */
-    .header {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        padding: 16px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-
-    .header-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo {
-        font-weight: 900;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        letter-spacing: -1px;
-    }
-    .logo span { color: var(--tg-blue); }
-
-    .nav ul { display: flex; gap: 32px; }
-    .nav a { font-weight: 600; font-size: 15px; color: #555; transition: 0.2s; }
-    .nav a:hover { color: var(--tg-blue); }
-
-    /* Buttons */
-    .btn {
-        padding: 14px 28px;
-        border-radius: 14px;
-        font-weight: 700;
-        font-size: 15px;
-        cursor: pointer;
-        border: none;
-        transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    .btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
-    .btn:active { transform: scale(0.98); }
-
-    .btn-primary { background: var(--primary); color: var(--accent); }
-    .btn-dark { background: var(--accent); color: var(--white); }
-    .btn-tg { background: var(--tg-blue); color: var(--white); }
-    .btn-outline { background: transparent; border: 2px solid rgba(0,0,0,0.1); color: var(--accent); }
-
-    /* Hero Section */
-    .hero {
-        padding: 100px 0 80px;
-        text-align: center;
-        position: relative;
-    }
-
-    .hero h1 {
-        font-size: 72px;
-        font-weight: 900;
-        line-height: 1.0;
-        margin-bottom: 24px;
-        letter-spacing: -2px;
-        color: var(--accent);
-    }
-
-    .hero p {
-        font-size: 22px;
-        color: #666;
-        max-width: 680px;
-        margin: 0 auto 40px;
-        font-weight: 500;
-    }
-
-    /* Bento Grid */
-    .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, minmax(300px, auto));
-        gap: 24px;
-        margin-bottom: 80px;
-    }
-
-    .card {
-        background: var(--white);
-        border-radius: var(--radius);
-        padding: 36px;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        border: 1px solid rgba(0,0,0,0.03);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-        cursor: pointer;
-    }
-
-    .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        z-index: 2;
-    }
-
-    /* Modifiers */
-    .span-2 { grid-column: span 2; }
-    .span-3 { grid-column: span 3; }
-    .row-2 { grid-row: span 2; }
-
-    .card-yellow { background: var(--primary); }
-    .card-blue { background: var(--tg-blue); color: white; }
-    .card-dark { background: var(--accent); color: white; }
-
-    /* Typography inside cards */
-    .card h3 {
-        font-size: 32px;
-        margin: 0 0 12px 0;
-        font-weight: 800;
-        line-height: 1.1;
-        z-index: 2;
-        position: relative;
-        letter-spacing: -0.5px;
-    }
-    .card p {
-        font-size: 17px;
-        margin: 0;
-        z-index: 2;
-        position: relative;
-        max-width: 85%;
-        font-weight: 500;
-        opacity: 0.9;
-    }
-    .card-dark p { opacity: 0.6; }
-
-    .tag {
-        display: inline-block;
-        background: rgba(255,255,255,0.2);
-        backdrop-filter: blur(4px);
-        padding: 6px 14px;
-        border-radius: 50px;
-        font-size: 13px;
-        font-weight: 700;
-        margin-bottom: 16px;
-        width: fit-content;
-    }
-    .card-yellow .tag { background: rgba(0,0,0,0.08); }
-
-    /* 3D Elements Placeholder Styles */
-    /* Поскольку мы не можем загружать внешние файлы, я использую CSS для имитации или emoji с фильтрами,
-       либо ссылки на надежные CDN, если они разрешены. В данном случае использую ссылки, но с фолбеком */
-    .visual-3d {
-        position: absolute;
-        right: -20px;
-        bottom: -20px;
-        width: 220px;
-        height: 220px;
-        object-fit: contain;
-        transition: transform 0.5s ease;
-        z-index: 1;
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
-        pointer-events: none;
-    }
-
-    .card:hover .visual-3d {
-        transform: scale(1.1) rotate(5deg) translateY(-10px);
-    }
-
-    /* Specific card tweaks */
-    .stats-num { font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -2px; color: var(--tg-blue); }
-
-    /* Trust Section */
-    .trust-section {
-        display: flex;
-        justify-content: center;
-        gap: 60px;
-        opacity: 0.4;
-        filter: grayscale(100%);
-        margin-bottom: 100px;
-        flex-wrap: wrap;
-    }
-    .trust-logo { font-size: 24px; font-weight: 900; color: var(--accent); }
-
-    /* Footer */
-    footer {
-        background: var(--white);
-        padding: 60px 0;
-        text-align: center;
-        color: #999;
-        font-size: 14px;
-        border-top: 1px solid #eee;
-    }
-
-    @media (max-width: 1024px) {
-        .bento-grid { grid-template-columns: repeat(2, 1fr); }
-        .span-2, .span-3 { grid-column: span 2; }
-        .hero h1 { font-size: 56px; }
-    }
-
-    @media (max-width: 600px) {
-        .bento-grid { display: flex; flex-direction: column; }
-        .hero h1 { font-size: 40px; }
-        .header-inner { flex-direction: column; gap: 15px; }
-        .nav { display: none; }
-        .card { min-height: 250px; }
-        .visual-3d { width: 150px; height: 150px; }
-    }
-</style>
-</head> <body>
-text
-
-<header class="header">
-    <div class="container header-inner">
-        <a href="#" class="logo">TG<span>.Agency</span></a>
-        <nav class="nav">
-            <ul>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Кейсы</a></li>
-                <li><a href="#">Тарифы</a></li>
-                <li><a href="#">Блог</a></li>
-            </ul>
-        </nav>
-        <div style="display: flex; gap: 10px;">
-            <button class="btn btn-outline" onclick="alert('Логин в кабинет')">Войти</button>
-            <button class="btn btn-primary" onclick="alert('Открываем форму брифа...')">Заказать аудит</button>
-        </div>
-    </div>
-</header>
-
-<main>
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <h1>Масштабируем бизнес<br>через Telegram Ads</h1>
-            <p>Официальный партнер Telegram. Приводим целевых лидов, создаем автоворонки и закупаем рекламу с ROI > 200%.</p>
-            <div style="display: flex; gap: 16px; justify-content: center;">
-                <button class="btn btn-tg">
-                    <span style="margin-right: 8px;">✈️</span> Telegram Ads
-                </button>
-                <button class="btn btn-dark">
-                     Наши кейсы
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bento Grid -->
-    <section class="container">
-        <div class="bento-grid">
-            
-            <!-- Card 1: Main Product (Yellow) -->
-            <div class="card span-2 row-2 card-yellow">
-                <span class="tag">Флагман</span>
-                <h3>Telegram Ads<br>под ключ</h3>
-                <p style="color: #4A4011; margin-top: 10px;">
-                    Полный цикл запуска: от создания кабинета и пополнения в евро до создания креативов и прохождения строгой модерации. Снижаем цену подписчика в 2 раза.
-                </p>
-                <button class="btn btn-dark" style="margin-top: auto; align-self: flex-start;">Узнать цены →</button>
-                
-                <!-- 3D Image: Rocket -->
-                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rocket-3215127-2691566.png" class="visual-3d" alt="Rocket 3D">
-            </div>
-
-            <!-- Card 2: Seeding (Dark) -->
-            <div class="card card-dark">
-                <span class="tag" style="background: rgba(255,255,255,0.1);">Native</span>
-                <h3>Посевы</h3>
-                <p>Ручной подбор 5000+ каналов. Без ботов.</p>
-                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/speaker-4036015-3342366.png" class="visual-3d" style="width: 140px; height: 140px; right: -10px; bottom: -10px;" alt="Speaker 3D">
-            </div>
-
-            <!-- Card 3: Chatbots -->
-            <div class="card" style="background: #E3F2FD;">
-                <span class="tag" style="color: var(--tg-blue); background: #fff;">Dev</span>
-                <h3 style="color: var(--tg-blue);">Чат-боты</h3>
-                <p style="color: #557;">Воронки продаж, которые работают 24/7.</p>
-                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/chat-bubbles-4974917-4146039.png" class="visual-3d" style="width: 160px; height: 160px;" alt="Chat 3D">
-            </div>
-
-            <!-- Card 4: Analytics (Stats) -->
-            <div class="card span-2">
-                <div class="stats-num">24 млн ₽</div>
-                <p style="margin-top: 10px;">Рекламного бюджета мы открутили для клиентов за последний квартал. Мы знаем, как не слить деньги.</p>
-                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/chart-pie-2997148-2516140.png" class="visual-3d" style="right: 10px; bottom: -30px;" alt="Chart 3D">
-            </div>
-
-            <!-- Card 5: Community (Blue) -->
-            <div class="card card-blue">
-                <h3>Блог</h3>
-                <p>Читайте наши кейсы и лайфхаки по маркировке рекламы.</p>
-                <div style="margin-top: auto; font-weight: 700;">Перейти →</div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Trust Section -->
-    <section class="container">
-        <p style="text-align: center; color: #999; margin-bottom: 20px; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Нам доверяют лидеры рынка</p>
-        <div class="trust-section">
-            <div class="trust-logo">SKILLBOX</div>
-            <div class="trust-logo">OZON</div>
-            <div class="trust-logo">TINKOFF</div>
-            <div class="trust-logo">SKYENG</div>
-            <div class="trust-logo">AVIASALES</div>
-        </div>
-    </section>
-
-    <!-- Contact Form Preview -->
-    <section class="container" style="margin-bottom: 80px;">
-        <div style="background: var(--accent); border-radius: var(--radius); padding: 60px; color: white; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px; position: relative; overflow: hidden;">
-            
-            <div style="max-width: 500px; z-index: 2;">
-                <h2 style="font-size: 48px; margin-bottom: 20px; font-weight: 900; line-height: 1;">Готовы начать?</h2>
-                <p style="font-size: 18px; opacity: 0.7; margin-bottom: 30px;">Оставьте заявку на бесплатный медиаплан. Мы проанализируем вашу нишу и предложим стратегию.</p>
-                <form onsubmit="event.preventDefault(); alert('Заявка отправлена!');" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <input type="text" placeholder="Ссылка на канал / сайт" style="padding: 16px; border-radius: 12px; border: none; flex: 1; min-width: 200px;">
-                    <button class="btn btn-primary">Получить план</button>
-                </form>
-            </div>
-
-            <!-- 3D Mail decoration -->
-            <img src="https://cdn3d.iconscout.com/3d/premium/thumb/mail-4965379-4127027.png" style="width: 300px; transform: rotate(-15deg); filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));" alt="Mail 3D">
-            
-            <!-- Background decoration -->
-            <div style="position: absolute; top: -50%; left: -20%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,221,45,0.1) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    <div class="container">
-        © 2023 TG.Agency. Все права защищены. <br> 
-        <a href="#" style="text-decoration: underline;">Политика конфиденциальности</a>
-    </div>
-</footer>
-
-<script>
-    // Простая анимация появления элементов при скролле
-    document.addEventListener('DOMContentLoaded', () => {
-        const cards = document.querySelectorAll('.card');
+        /* --- 2. Базовые настройки --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--accent);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
 
-        cards.forEach((card, index) => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(30px)';
-            card.style.transitionDelay = `${index * 0.05}s`; // Stagger effect
-            observer.observe(card);
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        ul { list-style: none; }
+        button { font-family: inherit; }
+
+        /* Контейнер */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- 3. Хедер --- */
+        .header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-weight: 900; font-size: 24px; display: flex; align-items: center; letter-spacing: -1px; }
+        .logo span { color: var(--tg-blue); }
+
+        .nav ul { display: flex; gap: 30px; }
+        .nav a { font-weight: 600; font-size: 15px; color: #555; transition: 0.2s; }
+        .nav a:hover, .nav a.active { color: var(--tg-blue); }
+
+        /* Кнопки */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .btn:active { transform: scale(0.96); }
+        .btn-primary { background: var(--primary); color: var(--accent); }
+        .btn-dark { background: var(--accent); color: var(--white); }
+        .btn-tg { background: var(--tg-blue); color: var(--white); }
+
+        /* --- 4. SPA Структура (Секции) --- */
+        .page-section {
+            display: none; /* Скрываем все страницы по умолчанию */
+            padding-top: 40px;
+            padding-bottom: 80px;
+            animation: fadeIn 0.4s ease;
+        }
+        .page-section.active { display: block; } /* Показываем активную */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 5. Дизайн блоков (Bento Grid) --- */
+        .hero-title {
+            font-size: 64px; font-weight: 900; line-height: 1; margin-bottom: 20px; letter-spacing: -2px; text-align: center;
+        }
+        .hero-desc {
+            font-size: 20px; color: #666; max-width: 600px; margin: 0 auto 50px; text-align: center;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, minmax(280px, auto));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.03);
+            cursor: pointer;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); z-index: 2; }
+
+        /* Модификаторы карточек */
+        .span-2 { grid-column: span 2; }
+        .row-2 { grid-row: span 2; }
+        .card-yellow { background: var(--primary); }
+        .card-blue { background: var(--tg-blue); color: white; }
+        .card-dark { background: var(--accent); color: white; }
+
+        /* Типографика карточек */
+        .card h3 { font-size: 28px; margin-bottom: 10px; font-weight: 800; z-index: 2; position: relative; line-height: 1.1; }
+        .card p { font-size: 16px; margin-bottom: 20px; z-index: 2; position: relative; opacity: 0.8; max-width: 80%; }
+        .price-tag { font-size: 24px; font-weight: 800; margin-top: auto; z-index: 2; }
+
+        /* 3D Объекты */
+        .visual-3d {
+            position: absolute;
+            right: -20px; bottom: -20px;
+            width: 180px; height: 180px;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+            z-index: 1;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+        .card:hover .visual-3d { transform: scale(1.1) rotate(5deg); }
+
+        /* --- 6. Стили для страницы Услуг и Контактов --- */
+        .services-list {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;
+        }
+        
+        .form-card {
+            max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: var(--radius);
+        }
+        .input-group { margin-bottom: 20px; }
+        .input-field {
+            width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #E0E0E0; font-size: 16px; background: #FAFAFA;
+        }
+        .input-field:focus { outline: 2px solid var(--tg-blue); background: #fff; }
+
+        /* Адаптив */
+        @media (max-width: 900px) {
+            .hero-title { font-size: 42px; }
+            .bento-grid, .services-list { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .span-2, .row-2 { grid-column: auto; grid-row: auto; }
+            .nav { display: none; } /* В упрощенном варианте скрываем меню на моб */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Меню -->
+    <header class="header">
+        <div class="container header-inner">
+            <a onclick="route('home')" class="logo" style="cursor: pointer;">TG<span>.PRO</span></a>
+            <nav class="nav">
+                <ul>
+                    <li><a onclick="route('home')" id="nav-home" class="active">Главная</a></li>
+                    <li><a onclick="route('services')" id="nav-services">Услуги и Цены</a></li>
+                    <li><a onclick="route('cases')" id="nav-cases">Кейсы</a></li>
+                    <li><a onclick="route('contact')" id="nav-contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button onclick="route('contact')" class="btn btn-primary">Оставить заявку</button>
+        </div>
+    </header>
+
+    <!-- СТРАНИЦА 1: ГЛАВНАЯ -->
+    <section id="home" class="page-section active">
+        <div class="container">
+            <h1 class="hero-title">Масштабируем бизнес<br>через Telegram Ads</h1>
+            <p class="hero-desc">Официальный партнер Telegram. Делаем рекламу, которая окупается, создаем автоворонки и приводим горячих лидов.</p>
+            
+            <!-- Сетка Бенто -->
+            <div class="bento-grid">
+                
+                <!-- 1. Основная (Желтая) -->
+                <div class="card span-2 row-2 card-yellow" onclick="route('services')">
+                    <span style="background:rgba(0,0,0,0.1); width:fit-content; padding:4px 10px; border-radius:20px; font-weight:bold; font-size:12px; margin-bottom:10px;">TOP SERVICE</span>
+                    <h3>Telegram Ads<br>под ключ</h3>
+                    <p style="color: #4A4011;">Полный цикл: от создания кабинета в евро до креативов. Снижаем цену подписчика в 2 раза.</p>
+                    <button class="btn btn-dark" style="margin-top: auto; align-self: flex-start;">Тарифы →</button>
+                    <!-- 3D Ракета -->
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rocket-3215127-2691566.png" class="visual-3d" style="width: 240px; height: 240px;" alt="rocket">
+                </div>
+
+                <!-- 2. Посевы (Темная) -->
+                <div class="card card-dark" onclick="route('services')">
+                    <h3>Посевы</h3>
+                    <p>Ручной подбор каналов без ботов.</p>
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/speaker-4036015-3342366.png" class="visual-3d" style="right: -10px; bottom: -10px; width: 140px;" alt="speaker">
+                </div>
+
+                <!-- 3. Боты (Синяя) -->
+                <div class="card card-blue" onclick="route('services')">
+                    <h3>Чат-боты</h3>
+                    <p style="color:rgba(255,255,255,0.8)">Автоворонки 24/7.</p>
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/chat-bubbles-4974917-4146039.png" class="visual-3d" style="width: 140px;" alt="chat">
+                </div>
+
+                <!-- 4. Статистика (Широкая) -->
+                <div class="card span-2" onclick="route('cases')">
+                    <h3 style="font-size: 56px; color: var(--tg-blue); margin-bottom: 0;">24 млн ₽</h3>
+                    <p style="color: #666; max-width: 60%;">Рекламного бюджета откручено за квартал.</p>
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/chart-pie-2997148-2516140.png" class="visual-3d" style="right: 20px; bottom: -30px;" alt="chart">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- СТРАНИЦА 2: УСЛУГИ -->
+    <section id="services" class="page-section">
+        <div class="container">
+            <h2 class="hero-title" style="font-size: 48px;">Наши Тарифы</h2>
+            <div class="services-list">
+                
+                <!-- Тариф 1 -->
+                <div class="card">
+                    <h3 style="color: #999;">Тест-драйв</h3>
+                    <div style="font-size: 32px; font-weight: 900; margin: 10px 0;">30 000 ₽</div>
+                    <p>Для проверки гипотез.</p>
+                    <ul style="margin: 20px 0; color: #555;">
+                        <li>✅ Настройка кабинета</li>
+                        <li>✅ 5 рекламных объявлений</li>
+                        <li>✅ Бюджет до 500€</li>
+                    </ul>
+                    <button class="btn btn-dark" style="width:100%; margin-top:auto;" onclick="route('contact')">Выбрать</button>
+                </div>
+
+                <!-- Тариф 2 (Акцент) -->
+                <div class="card" style="border: 3px solid var(--primary);">
+                    <div style="background:var(--primary); width:fit-content; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:12px; margin-bottom:10px;">ПОПУЛЯРНЫЙ</div>
+                    <h3>Комплекс PRO</h3>
+                    <div style="font-size: 32px; font-weight: 900; margin: 10px 0;">120 000 ₽</div>
+                    <p>Полное ведение и масштабирование.</p>
+                    <ul style="margin: 20px 0; color: #555;">
+                        <li>✅ Стратегия + Креативы</li>
+                        <li>✅ Ads + Посевы</li>
+                        <li>✅ Чат-бот в подарок</li>
+                        <li>✅ Еженедельные отчеты</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width:100%; margin-top:auto;" onclick="route('contact')">Выбрать</button>
+                </div>
+
+                 <!-- Тариф 3 -->
+                 <div class="card card-dark">
+                    <h3>Enterprise</h3>
+                    <div style="font-size: 32px; font-weight: 900; margin: 10px 0; color:var(--primary);">% от KPI</div>
+                    <p style="color:#999;">Для крупных брендов.</p>
+                    <ul style="margin: 20px 0; color: #ccc;">
+                        <li>✅ Команда из 5 человек</li>
+                        <li>✅ Сквозная аналитика</li>
+                        <li>✅ Гарантия результата</li>
+                    </ul>
+                    <button class="btn btn-white" style="width:100%; margin-top:auto; background:white; color:black;" onclick="route('contact')">Обсудить</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- СТРАНИЦА 3: КЕЙСЫ -->
+    <section id="cases" class="page-section">
+        <div class="container">
+            <h2 class="hero-title" style="font-size: 48px;">Реальные цифры</h2>
+            <div class="bento-grid" style="grid-template-rows: auto;">
+                
+                <div class="card span-2" style="background: #E3F2FD;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <h3>Онлайн-школа Python</h3>
+                            <p style="color:#557;">Задача: регистрации на вебинар.</p>
+                            <div style="font-size:40px; font-weight:900; color:var(--tg-blue);">35 ₽</div>
+                            <span style="font-size:14px; color:#557;">цена за лид</span>
+                        </div>
+                        <div style="font-size:40px;">🐍</div>
+                    </div>
+                </div>
+
+                <div class="card span-2" style="background: #FFFBE6;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <h3>Магазин кроссовок</h3>
+                            <p style="color:#4A4011;">Задача: подписчики в канал.</p>
+                            <div style="font-size:40px; font-weight:900; color: #D4AF37;">12 ₽</div>
+                            <span style="font-size:14px; color:#4A4011;">цена подписчика</span>
+                        </div>
+                        <div style="font-size:40px;">👟</div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-dark" onclick="route('contact')">Хочу так же</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТРАНИЦА 4: КОНТАКТЫ -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <div style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <h2 style="font-size: 48px; font-weight: 900; line-height: 1.1; margin-bottom: 20px;">Давайте обсудим проект</h2>
+                    <p style="font-size: 18px; color: #666; margin-bottom: 40px;">Заполните форму, и мы пришлем коммерческое предложение в Telegram в течение 2 часов.</p>
+                    
+                    <div class="card card-blue" style="padding: 30px;">
+                        <h3>Пишите напрямую</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin-bottom: 15px;">Если не любите формы.</p>
+                        <button class="btn btn-white" style="background: white; color: var(--tg-blue);">@tg_pro_manager</button>
+                        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/mail-4965379-4127027.png" class="visual-3d" style="width: 120px;" alt="mail">
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 300px;">
+                    <form class="form-card" onsubmit="submitForm(event)">
+                        <h3 style="margin-bottom: 20px;">Заявка на аудит</h3>
+                        <div class="input-group">
+                            <label style="display:block; margin-bottom:8px; font-weight:600;">Имя</label>
+                            <input type="text" class="input-field" placeholder="Иван" required>
+                        </div>
+                        <div class="input-group">
+                            <label style="display:block; margin-bottom:8px; font-weight:600;">Ник в Telegram</label>
+                            <input type="text" class="input-field" placeholder="@username" required>
+                        </div>
+                        <div class="input-group">
+                            <label style="display:block; margin-bottom:8px; font-weight:600;">Задача</label>
+                            <textarea class="input-field" rows="3" placeholder="Нужны продажи..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СКРИПТЫ (Логика SPA) -->
+    <script>
+        // Функция переключения страниц
+        function route(pageId) {
+            // 1. Скрываем все секции
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // 2. Показываем нужную
+            const activeSection = document.getElementById(pageId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+                
+                // Скролл вверх при переходе
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 3. Обновляем меню (выделяем активный пункт)
+            const links = document.querySelectorAll('.nav a');
+            links.forEach(link => link.classList.remove('active'));
+            
+            const activeLink = document.getElementById('nav-' + pageId);
+            if (activeLink) activeLink.classList.add('active');
+        }
+
+        // Имитация отправки формы
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Отправка...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerText = '✅ Готово!';
+                btn.style.background = '#4CAF50';
+                btn.style.color = 'white';
+                
+                setTimeout(() => {
+                    alert('Менеджер свяжется с вами в Telegram!');
+                    e.target.reset();
+                    btn.innerText = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                    btn.disabled = false;
+                }, 1000);
+            }, 1500);
+        }
+
+        // Запуск (открываем главную по умолчанию)
+        document.addEventListener('DOMContentLoaded', () => {
+            route('home');
         });
-    });
-</script>
-</body> </html> :::
+    </script>
+</body>
+</html>
